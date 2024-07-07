@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "@ponder/core": "^0.4.41",
-    "viem": "^1.19.3"
+    "viem": "^1.19.3",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",
