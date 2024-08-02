@@ -1,5 +1,6 @@
 import { createSchema } from "@ponder/core";
 
+
 export default createSchema((p) => ({
   Account: p.createTable({
     id: p.string(),
@@ -127,3 +128,4 @@ export default createSchema((p) => ({
     toId: p.one("to"),
   }),
 }));
+

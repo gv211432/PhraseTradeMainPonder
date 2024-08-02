@@ -1,4 +1,4 @@
-export const PhraseTradeMainAbi = [
+[
   {
     "inputs": [
       {
@@ -795,4 +795,4 @@ export const PhraseTradeMainAbi = [
     "stateMutability": "view",
     "type": "function"
   }
-] as const;
+]

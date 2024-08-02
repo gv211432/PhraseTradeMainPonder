@@ -12,8 +12,9 @@
   },
   "dependencies": {
     "@ponder/core": "^0.4.41",
-    "viem": "^1.19.3",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "firebase-admin": "^12.2.0",
+    "viem": "^1.19.3"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",
