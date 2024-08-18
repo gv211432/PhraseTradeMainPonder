@@ -166,19 +166,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "getNewTokenId",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -359,19 +346,6 @@
       }
     ],
     "name": "marketIdByTokenURI",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "minFeesClaimThreshold",
     "outputs": [
       {
         "internalType": "uint256",
@@ -752,19 +726,6 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_threshold",
-        "type": "uint256"
-      }
-    ],
-    "name": "setMinFeesClaimThreshold",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
         "name": "_fee",
         "type": "uint256"
       }
@@ -952,12 +913,17 @@
         "type": "uint256"
       },
       {
+        "internalType": "address",
+        "name": "_shareHolder",
+        "type": "address"
+      },
+      {
         "internalType": "uint256",
         "name": "_amount",
         "type": "uint256"
       }
     ],
-    "name": "setSharesSupply",
+    "name": "setSharesBalance",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -966,11 +932,16 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_tokenIdCounter",
+        "name": "_marketId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
         "type": "uint256"
       }
     ],
-    "name": "setTokenIdCounter",
+    "name": "setSharesSupply",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -1008,19 +979,6 @@
       }
     ],
     "name": "sharesSupply",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "tokenIdCounter",
     "outputs": [
       {
         "internalType": "uint256",

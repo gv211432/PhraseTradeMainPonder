@@ -291,6 +291,12 @@
       {
         "indexed": false,
         "internalType": "uint256",
+        "name": "rewardsAdded",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
         "name": "protocolFee",
         "type": "uint256"
       },
@@ -337,7 +343,7 @@
   },
   {
     "inputs": [],
-    "name": "MULTIPLIER",
+    "name": "POWER",
     "outputs": [
       {
         "internalType": "uint256",
@@ -364,6 +370,118 @@
     "name": "buyShares",
     "outputs": [],
     "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "marketId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "qty",
+        "type": "uint256"
+      }
+    ],
+    "name": "calculateDividendInfo",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "reflectionPerShare",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sharesBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "newSharesBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reflectionPayouts",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "allReflection",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reflectionPayoutToUpdate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "dividendEarned",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IPhraseTradeMain.DividendInfo",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      }
+    ],
+    "name": "calculateFees",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "protocolFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ownerFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "creatorFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardFee",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reflectionFee",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IPhraseTradeMain.Fees",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   },
   {

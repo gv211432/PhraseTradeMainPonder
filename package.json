@@ -13,6 +13,7 @@
   "dependencies": {
     "@ponder/core": "^0.4.41",
     "dotenv": "^16.4.5",
+    "ethers": "^6.13.2",
     "firebase-admin": "^12.2.0",
     "viem": "^1.19.3"
   },
