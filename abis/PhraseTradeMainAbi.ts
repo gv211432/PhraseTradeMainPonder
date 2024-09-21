@@ -33,6 +33,12 @@ export const PhraseTradeMainAbi = [
         "internalType": "uint256",
         "name": "amount",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "marketId",
+        "type": "uint256"
       }
     ],
     "name": "BonusAdded",
@@ -111,12 +117,6 @@ export const PhraseTradeMainAbi = [
       {
         "indexed": false,
         "internalType": "address",
-        "name": "creator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
         "name": "beneficiary",
         "type": "address"
       },
@@ -125,6 +125,12 @@ export const PhraseTradeMainAbi = [
         "internalType": "uint256",
         "name": "claimedFees",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
       }
     ],
     "name": "ClaimedCreatorFee",
@@ -135,12 +141,6 @@ export const PhraseTradeMainAbi = [
     "inputs": [
       {
         "indexed": false,
-        "internalType": "uint256",
-        "name": "marketId",
-        "type": "uint256"
-      },
-      {
-        "indexed": false,
         "internalType": "address",
         "name": "beneficiary",
         "type": "address"
@@ -150,6 +150,12 @@ export const PhraseTradeMainAbi = [
         "internalType": "uint256",
         "name": "claimedFees",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
       }
     ],
     "name": "ClaimedOwnerFee",
@@ -175,6 +181,12 @@ export const PhraseTradeMainAbi = [
         "internalType": "uint256",
         "name": "claimedFees",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
       }
     ],
     "name": "ClaimedReflectionFee",
@@ -200,6 +212,12 @@ export const PhraseTradeMainAbi = [
         "internalType": "uint256",
         "name": "claimedRewards",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
       }
     ],
     "name": "ClaimedReward",
@@ -327,6 +345,10 @@ export const PhraseTradeMainAbi = [
     ],
     "name": "SellShare",
     "type": "event"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "fallback"
   },
   {
     "inputs": [],
@@ -523,11 +545,6 @@ export const PhraseTradeMainAbi = [
   },
   {
     "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "marketId",
-        "type": "uint256"
-      },
       {
         "internalType": "address",
         "name": "beneficiary",
@@ -912,5 +929,9 @@ export const PhraseTradeMainAbi = [
     ],
     "stateMutability": "view",
     "type": "function"
+  },
+  {
+    "stateMutability": "payable",
+    "type": "receive"
   }
 ] as const;

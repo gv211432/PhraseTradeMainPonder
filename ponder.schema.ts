@@ -2,45 +2,43 @@ import { createSchema } from "@ponder/core";
 
 
 export default createSchema((p) => ({
+  // These events will update this table => BuyShare, SellShare
   Account: p.createTable({
-    id: p.string(),
-    isController: p.boolean(),
-    ownedMarkets: p.many("Market.ownerId"),
+    id: p.string(), // address
+    ownedMarkets: p.many("Market.ownerId"), // markets owned by the account
     trades: p.many("Trade.buyerId"),
-    createdFees: p.many("ClaimedCreatorFee.creatorId"),
+    creatorFees: p.many("ClaimedCreatorFee.creatorId"),
     ownerFees: p.many("ClaimedOwnerFee.beneficiaryId"),
     reflectionFees: p.many("ClaimedReflectionFee.beneficiaryId"),
     rewards: p.many("ClaimedReward.beneficiaryId"),
     transferEvents: p.many("OwnershipTransferred.newOwnerId"),
-    nftBalance: p.bigint(),
     nftApprovals: p.many("Approval.owner"),
-    nftTransferFromEvents: p.many("TransferEvent.from"),
-    nftTransferToEvents: p.many("TransferEvent.to"),
+    nftTransferFromEvents: p.many("TransferEvent.fromId"),
+    nftTransferToEvents: p.many("TransferEvent.toId"),
   }),
   Market: p.createTable({
-    id: p.string(),
-    marketId: p.bigint(),
+    id: p.bigint(),
     ownerId: p.string().references("Account.id"),
-    owner: p.one("ownerId"),
     trades: p.many("Trade.marketId"),
     bonuses: p.many("BonusAdded.marketId"),
     rewards: p.many("RewardsOffered.marketId"),
   }),
   Trade: p.createTable({
     id: p.string(),
-    marketId: p.string().references("Market.id"),
-    buyerId: p.string().references("Account.id"),
-    sellerId: p.string().references("Account.id"),
+    marketId: p.bigint().references("Market.id"),
+    buyerId: p.string().references("Account.id").optional(),
+    sellerId: p.string().references("Account.id").optional(),
     qty: p.bigint(),
-    pricePaid: p.bigint(),
+    pricePaid: p.bigint().optional(),
     protocolFee: p.bigint(),
     ownerFee: p.bigint(),
     creatorFee: p.bigint(),
     rewardFee: p.bigint(),
     reflectionFee: p.bigint(),
     newSupply: p.bigint(),
-    dividendsAdded: p.bigint(),
-    priceReceived: p.bigint(),
+    dividendsAdded: p.bigint().optional(),
+    rewardsAdded: p.bigint().optional(),
+    priceReceived: p.bigint().optional(),
     buyer: p.one("buyerId"),
     seller: p.one("sellerId"),
     market: p.one("marketId"),
@@ -48,28 +46,22 @@ export default createSchema((p) => ({
   BonusAdded: p.createTable({
     id: p.string(),
     amount: p.bigint(),
-    marketId: p.string().references("Market.id"),
-    market: p.one("marketId"),
+    marketId: p.bigint().references("Market.id"),
   }),
   ClaimedCreatorFee: p.createTable({
-    id: p.string(),
+    id: p.string(), // event id
     creatorId: p.string().references("Account.id"),
     beneficiaryId: p.string().references("Account.id"),
     claimedFees: p.bigint(),
-    creator: p.one("creatorId"),
-    beneficiary: p.one("beneficiaryId"),
   }),
   ClaimedOwnerFee: p.createTable({
     id: p.string(),
-    marketId: p.string().references("Market.id"),
     beneficiaryId: p.string().references("Account.id"),
     claimedFees: p.bigint(),
-    market: p.one("marketId"),
-    beneficiary: p.one("beneficiaryId"),
   }),
   ClaimedReflectionFee: p.createTable({
     id: p.string(),
-    marketId: p.string().references("Market.id"),
+    marketId: p.bigint().references("Market.id"),
     beneficiaryId: p.string().references("Account.id"),
     claimedFees: p.bigint(),
     market: p.one("marketId"),
@@ -77,12 +69,13 @@ export default createSchema((p) => ({
   }),
   ClaimedReward: p.createTable({
     id: p.string(),
-    marketId: p.string().references("Market.id"),
+    marketId: p.bigint().references("Market.id"),
     beneficiaryId: p.string().references("Account.id"),
     claimedRewards: p.bigint(),
     market: p.one("marketId"),
     beneficiary: p.one("beneficiaryId"),
   }),
+  // abouth the contracts ownership => PhraseTradeMain, PhraseTradeNFT
   OwnershipTransferred: p.createTable({
     id: p.string(),
     previousOwnerId: p.string().references("Account.id"),
@@ -92,10 +85,9 @@ export default createSchema((p) => ({
   }),
   RewardsOffered: p.createTable({
     id: p.string(),
-    marketId: p.string().references("Market.id"),
+    marketId: p.bigint().references("Market.id"),
     amount: p.bigint(),
     pendingRewardsInHand: p.bigint(),
-    market: p.one("marketId"),
   }),
   Approval: p.createTable({
     id: p.string(),
@@ -121,11 +113,9 @@ export default createSchema((p) => ({
   }),
   TransferEvent: p.createTable({
     id: p.string(),
-    from: p.string().references("Account.id"),
-    to: p.string().references("Account.id"),
+    fromId: p.string().references("Account.id"),
+    toId: p.string().references("Account.id"),
     tokenId: p.bigint(),
-    fromId: p.one("from"),
-    toId: p.one("to"),
   }),
 }));
 

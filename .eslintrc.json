@@ -1,3 +1,78 @@
 {
-  "extends": "ponder"
+  "extends": "ponder",
+  "overrides": [
+    {
+      "files": [
+        "src/**/*.ts"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "rules": {
+        // Disallow explicit usage of 'string' type, throw warnings instead of errors
+        "@typescript-eslint/ban-types": [
+          "warn",
+          {
+            "types": {
+              "String": {
+                "message": "Use 'string' instead",
+                "fixWith": "string"
+              }
+            }
+          }
+        ],
+        // Throw warnings for unused variables instead of errors
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "argsIgnorePattern": "^_"
+          }
+        ],
+        // Suggest using 'const' for variables that are never reassigned
+        "prefer-const": [
+          "warn"
+        ],
+        // Suggest using template literals instead of string concatenation
+        "prefer-template": [
+          "warn"
+        ],
+        // Enforce consistent string quotes (single quotes)
+        // "quotes": [
+        //   "warn",
+        //   "double",
+        //   {
+        //     "avoidEscape": true
+        //   }
+        // ],
+        // Warn if there are any console.log statements
+        // "no-console": [
+        //   "warn",
+        //   {
+        //     "allow": [
+        //       "warn",
+        //       "error"
+        //     ]
+        //   }
+        // ],
+        // Throw warnings if a function has too many parameters (customize as needed)
+        "max-params": [
+          "warn",
+          {
+            "max": 4
+          }
+        ],
+        // Warn about usage of 'any' type
+        // "@typescript-eslint/no-explicit-any": [
+        //   "warn"
+        // ],
+        // Warn if a function is too complex
+        "complexity": [
+          "warn",
+          {
+            "max": 10
+          }
+        ]
+      }
+    }
+  ]
 }

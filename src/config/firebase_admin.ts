@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 import { serviceAccount } from "./firebase_key";
-import { envs } from "../../loadEnv";
+// import { envs } from "../../loadEnv";
 
 // Fetch the service account key JSON file contents
 // const chainId = envs.CHAIN_ID;

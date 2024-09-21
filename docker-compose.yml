@@ -11,7 +11,20 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data1:/var/lib/postgresql/data
+
+  postgres-db2:
+    image: postgres:latest
+    container_name: ponder-postgres-db2
+    environment:
+      POSTGRES_USER: ponder-user
+      POSTGRES_PASSWORD: ponder-pass
+      POSTGRES_DB: ponder
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data2:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  postgres_data1:
+  postgres_data2:
