@@ -6,6 +6,7 @@ import { E18, getBuyPriceAfterFees, getPrice } from "./lib/price";
 import { mainActivityDb } from "./services/realtimeMainDb";
 import { eventPreProcess } from "./hooks/eventPreProcess";
 import { eventPostProcess } from "./hooks/eventPostProcess";
+import { getUserDbConnection } from "./lib/sqlRunner";
 
 // Need to optimize and save only relevant data
 const buySell = async (event: any) => {
@@ -55,6 +56,8 @@ ponder.on("PhraseTradeMain:BuyShare", async ({ event, context }) => {
       },
       update: {},
     });
+    // Update the NFT record, minted true, in user db for included in the search results.
+    (await getUserDbConnection())?.runQuery(`UPDATE nfts SET minted=true WHERE "marketId"='${event.args.marketId}'`);
   }
 
   // create the trade record

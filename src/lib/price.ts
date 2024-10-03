@@ -30,18 +30,19 @@ export function getPrice(supply: bigint, qty: bigint) {
         (BigInt(2) * (supply - E18 + qty) + E18)) /
       (BigInt(6) * E18);
   const summation = (sum2 - sum1) / E18;
-  return summation / BigInt(1600);
+  return summation / BigInt(16_000);
 }
 
+// calculates the NFTs next price instantly
 export function getBuyPriceAfterFees(price: bigint) {
+  const priceNum = Number(price);
+  const protocolFee = (priceNum * envs.PROTOCOL_FEE_PERCENT);
+  const ownerFee = (priceNum * envs.OWNER_FEE_PERCENT);
+  const creatorFee = (priceNum * envs.CREATOR_FEE_PERCENT);
+  const rewardFee = (priceNum * envs.REFLECTION_FEE_PERCENT);
+  const reflectionFee = (priceNum * envs.REFLECTION_FEE_PERCENT);
 
-  const protocolFee = (price * BigInt(envs.PROTOCOL_FEE_PERCENT * 1e18) / E18);
-  const ownerFee = (price * BigInt(envs.OWNER_FEE_PERCENT * 1e18) / E18);
-  const creatorFee = (price * BigInt(envs.CREATOR_FEE_PERCENT * 1e18) / E18);
-  const rewardFee = (price * BigInt(envs.REFLECTION_FEE_PERCENT * 1e18) / E18);
-  const reflectionFee = (price * BigInt(envs.REFLECTION_FEE_PERCENT * 1e18) / E18);
-
-  return price +
+  return priceNum +
     protocolFee +
     ownerFee +
     creatorFee +

@@ -12,6 +12,8 @@ yarn-error.log*
 
 # Env files
 .env*.local
+.env*.dev*
+.env*.prod*
 
 # Ponder
 /generated/

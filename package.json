@@ -1,5 +1,5 @@
 {
-  "name": "phrase_trade_main",
+  "name": "phrase_trade_ponder",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -15,11 +15,13 @@
     "dotenv": "^16.4.5",
     "ethers": "^6.13.2",
     "firebase-admin": "^12.2.0",
+    "pg": "^8.13.0",
     "ts-node": "^10.9.2",
     "viem": "^1.19.3"
   },
   "devDependencies": {
     "@types/node": "^20.9.0",
+    "@types/pg": "^8.11.10",
     "eslint": "^8.53.0",
     "eslint-config-ponder": "^0.4.41",
     "typescript": "^5.2.2"

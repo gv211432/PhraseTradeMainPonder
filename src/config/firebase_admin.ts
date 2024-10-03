@@ -1,23 +1,18 @@
 import * as admin from "firebase-admin";
 import { serviceAccount } from "./firebase_key";
-// import { envs } from "../../loadEnv";
 
 // Fetch the service account key JSON file contents
-// const chainId = envs.CHAIN_ID;
-// const version = "v" + envs.VERSION;
-const chainId = "1337";
-const version = "v1";
+const chainId = process.env.FIREBASE_CHAIN_ID ?? "";
+const version = process.env.FIREBASE_VERSION ?? "";
 
-if (!chainId || !version) {
-  throw new Error("Chain Id and Version are required");
-}
+if (!chainId || !version) throw ("Firebase path {chainId}/{version}/ missing");
 
 // Initialize the app with a service account, granting admin privileges
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount as any),
   // The database URL depends on the location of the database
-  databaseURL: "https://phrasetradedev-default-rtdb.firebaseio.com",
-  storageBucket: "gs://phrasetradedev.appspot.com",
+  databaseURL: process.env.FIREBASE_RTDB_URL ?? "",
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET ?? "",
 });
 
 /** As an admin, the app has access to read and write all data, regardless of Security Rules */
