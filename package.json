@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "ponder dev",
+    "serve": "ponder serve",
     "start": "ponder start",
     "codegen": "ponder codegen",
     "lint": "eslint ./src",
