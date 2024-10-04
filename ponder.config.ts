@@ -18,6 +18,7 @@ export default createConfig({
     kind: "postgres",
     connectionString: process.env.DATABASE_URL,
     schema: "public", // or your desired schema
+    publishSchema: "public",
     poolConfig: {
       max: 100, // Adjust based on your needs
     },
